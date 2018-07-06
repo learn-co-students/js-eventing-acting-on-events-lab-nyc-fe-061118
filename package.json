@@ -4,6 +4,8 @@
   "description": "Practice animating elements on the page with JavaScript",
   "main": "index.js",
   "scripts": {
+    "postinstall": "gem install learn-co",
+    "test": "node_modules/browser-sync/bin/browser-sync.js start --config node_modules/learn-browser/bs-config.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
     "mocha-jsdom": "^1.1.0",
-    "mocha-multi": "^0.9.0"
+    "mocha-multi": "^0.9.0",
+    "learn-browser": "^0.1.13"
   }
 }

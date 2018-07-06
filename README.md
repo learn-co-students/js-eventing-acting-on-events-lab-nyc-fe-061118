@@ -4,79 +4,92 @@ Moving Things with JavaScript
 ## Objectives
 
 1. Explain how to update an element's position on the page
-2. Practice updating an element's position on the page
-3. Practice moving an element in response to a browser event
+2. Explain how to move an element in response to a browser event
+3. Practice moving elements on the page
 
-## Introduction
+## Problem Statement
 
-Think back to the first video game you played. (If you've never played a video game, try [this one](http://terrycavanaghgames.com/dontlookback/).)
+It's mesmerizing to think about how video games work. They will responded to your whims
+through a set of designated controls and interactions. It can pull you into its story by
+giving you controls to interact within, and sometimes shape the virtual environments.
 
-It was probably mesmerizing to think about how the game worked. It responded to your whims through a set of clear and easy-to-use interactions. It pulled you into its story by giving you a window into its world and a way of interacting with — shaping, even — that world.
+_Programming means that you can create such a world for other people._ It'll take some 
+time learning and practicing programming before you can build a game like 
+[Braid](http://braid-game.com/) or even [Don't Look Back](http://terrycavanaghgames.com/dontlookback/),
+for instance, but you can start with small steps. We're going to show you how to get started with moving elements with JavaScript.
 
-_Programming means that you can create such a world for other people._ Sure, it'll be a while before you're ready to build something like [Braid](http://braid-game.com/) or even [Don't Look Back](http://terrycavanaghgames.com/dontlookback/), but we can start with small steps. Let's learn how to move things on a page.
+## Explain How to Update an Element's Position on the Page
 
-## Updating an element's position
+#### Tasks for LearnIDE Environment Users
 
-Open up `index.html` in your favorite browser (we'll be using Chrome). Open the console, and let's get a hold of what we're calling the "dodger":
+1. Click the "OPEN IDE" button
+
+#### Tasks for Local Environment Users
+
+1. Fork this repository.
+2. Clone your fork locally.
+3. `cd` into the local repo you just cloned.
+
+Open up `index.html`, open the dev tools and take a look at the variable `dodger`:
 
 ``` javascript
 var dodger = document.getElementById('dodger')
 ```
 
-Awesome. Now let's change its color:
+Experiment with changing the color of dodger with this code:
 
 ``` javascript
 dodger.style.backgroundColor = "#000000"
 ```
 
-Whoa, where'd it go? Well, we changed the color to "#000000", which is another way of saying "black". So it just blends in with the background.
+Did the object disappear? That's because the color was changed to "#000000", which is
+another way of setting the color to be "black", so it blends in with the background.
 
-Let's change it to something more visible.
+Now let's change it to something more visible:
 
 ``` javascript
-dodger.style.backgroundColor = '#FF69B4'
+dodger.style.backgroundColor = ''
 ```
 
-Awesome.
+Now it should be pink!
 
 ![pink dodger](https://curriculum-content.s3.amazonaws.com/skills-based-js/pink_dodger.png)
 
-What have we been doing here? Well, we've been accessing the `style` property of the `dodger` element. This lets us change things like the `backgroundColor`, the `height`, `width`, etc.
+So far, we've been accessing the `style` property of the `dodger` element. This lets us change things like the `backgroundColor`, the `height`, `width`, etc.
 
-We can also, it turns out, change an element's position on the page.
+We can also change an element's position on the page.
 
-To start, let's read out the element's coordinates — we'll read these as if the bottom left of the black box were at coordinate (0, 0).
+First, let's read out the element's coordinates — we'll read these as if the bottom left of the black box were at coordinate (0, 0).
 
 ``` javascript
 dodger.style.left // "180px"
 dodger.style.bottom // "0px"
 ```
 
-So the dodger's bottom left edge is currently at (180, 0). (Keep in mind that these coordinates are relative to the black box.)
+The dodger's bottom left edge is currently at the coordinates (180, 0). Keep in mind that
+these coordinates are relative to the black box.
 
-Let's start by moving the element up.
+Now let's try moving the element up.
 
 ``` javascript
 dodger.style.bottom = '100px'
 ```
 
-Whoa!
-
 ![up 100px](https://curriculum-content.s3.amazonaws.com/skills-based-js/pink_dodger_bottom_100.png)
 
-Notice the annoying thing about this, though: even though we're talking about _numeric_ coordinates, we need to move the dodger by assigning it a different string. Let's return it to where we started:
+Even though we're setting _numeric_ coordinates, we need to move the dodger by assigning it a different string. Let's set it back to its default position:
 
 ``` javascript
 dodger.style.bottom = '0px'
 ```
 
-That's better.
+## Explain How to Move an Element in Response to a Browser Event
 
-## Moving in response to an event
+We can use event listeners to respond to an event and move the dodger.
 
-Remember event listeners? Turns out, we can use those to respond to an event and move the dodger.
-
-Let's say we want to move the dodger to the left. First we have to figure what the left arrow key's numeric value is. We could look it up, but we're programmers — let's explore!
+If we want to move the dodger to the left we have to figure what the left arrow
+key's numeric value is. We could look it up, but since we're programmers, we're going to
+explore!
 
 ``` javascript
 document.addEventListener('keydown', function(e) {
@@ -84,13 +97,15 @@ document.addEventListener('keydown', function(e) {
 })
 ```
 
-Entering the above in our console, if we now click on the window (where the dodger is rendered) press the left arrow key, we should see in our console:
+Enter the above into the console. If you click on the window (where the dodger is rendered)
+press the left arrow key, you should see in the console:
 
 ![left arrow keydown](https://curriculum-content.s3.amazonaws.com/skills-based-js/left_arrow_keydown.png)
 
 (Don't worry if you only see `37` :) ).
 
-Cool, so we know that we need to look for `37` to trigger a move to the left. Let's start moving left then:
+We now know that we need to look for `37` to trigger a move to the left. Let's start moving
+left then:
 
 ``` javascript
 document.addEventListener('keydown', function(e) {
@@ -103,21 +118,22 @@ document.addEventListener('keydown', function(e) {
 })
 ```
 
-So what are we doing here? Well, if we catch a left arrow keydown, we move the dodger 1 pixel to the left. (We have to parse the pixels as integers and then convert them back to the pixel string.) Otherwise (if it's not a left arrow keydown), we do zilch.
+If the left arrow key is pressed, the dodger moves 1 pixel to the left. Otherwise, if anything else is pressed, nothing happens.
 
-But you'll notice that, even though we're currently going one pixel at a time, eventually our dodger will zoom (well, relatively speaking) right out of view.
+**Note: We have to parse the pixels as integers and then convert them back to the pixel string.**
 
-How can we prevent this? Well, we want to check to see where the left edge of the dodger is, and we want to prevent it from going past the left edge of the black screen.
+Eventually, if the dodger is nudged too far left, it will fall out of view.
 
-It seems like it's time to break the dodger's movement out into a separate function. First, let's refresh the page and code with a blank slate.
+To prevent this, we'll want to check to see where the left edge of the dodger is, and we want
+to prevent it from going past the left edge of the black screen.
 
-Then let's grab the dodger again
+Now would be a good time to break the dodger's movement out into a separate function. Let's refresh the page and code with a blank slate and grab the dodger again.
 
 ``` javascript
 var dodger = document.getElementById('dodger')
 ```
 
-and work on that function:
+Work on this function:
 
 ``` javascript
 function moveDodgerLeft() {
@@ -142,17 +158,27 @@ document.addEventListener('keydown', function(e) {
 })
 ```
 
-Now try moving the dodger past the left edge. No can do!
+Now try again to move the dodger past the left edge. It shouldn't fall out of view now!
 
-## Your turn!
+## Practice moving elements on the page
 
-While this isn't tested, and this was meant as a code-along, we have not yet implemented moving the dodger to the right. Can you do it?
+Open up `index.js` and try writing a function to move the dodger to the right.
 
-Think about what needs to change to make a `moveDodgerRight()` function. We'll need another `e.which` in the event listener, and instead of moving the dodger `${left - 1}px`, we'll be moving it `${left + 1}px` (or `${right - 1}px`, if you prefer). To prevent the dodger from escaping off the right-hand side, you can make sure that `dodger.style.right` is always greater than `0px`.
+Think about what needs to change to make a `moveDodgerRight()` function. you'll need another
+`e.which` in the event listener, and instead of moving the dodger `${left - 1}px`, we'll be
+moving it `${left + 1}px` (or `${right - 1}px`, if you prefer). To prevent the dodger from
+falling off the right-hand side, you can make sure that `dodger.style.right` is always
+greater than `0px`.
+
+## Conclusion
+
+With event listeners and object properties, you are not only able to set properties on page
+load, but have object properties change as user input is submitted. Think about all the
+possibilities that this creates for user interactions, much like video games!
 
 ## Resources
 
 - [Don't Look Back](http://terrycavanaghgames.com/dontlookback/)
 - [Braid](http://braid-game.com/)
 
-<p class='util--hide'>View <a href='https://learn.co/lessons/moving-things-with-javascript'>Moving Things With Javascript</a> on Learn.co and start learning to code for free.</p>
+<p class='util--hide'>View <a href='https://learn.co/lessons/moving-things-with-javascript'>Moving Things With JavaScript</a> on Learn.co and start learning to code for free.</p>
