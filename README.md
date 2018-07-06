@@ -18,7 +18,7 @@ time learning and practicing programming before you can build a game like
 [Braid](http://braid-game.com/) or even [Don't Look Back](http://terrycavanaghgames.com/dontlookback/),
 for instance, but you can start with small steps. We're going to show you how to get started with moving elements with JavaScript.
 
-## Explain hHw to Update an Element's Position on the Page
+## Explain How to Update an Element's Position on the Page
 
 #### Tasks for LearnIDE Environment Users
 
