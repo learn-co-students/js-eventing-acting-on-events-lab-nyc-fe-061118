@@ -20,15 +20,10 @@ for instance, but you can start with small steps. We're going to show you how to
 
 ## Explain How to Update an Element's Position on the Page
 
-#### Tasks for LearnIDE Environment Users
+#### LearnIDE Environment Users
 
 1. Click the "OPEN IDE" button
 
-#### Tasks for Local Environment Users
-
-1. Fork this repository.
-2. Clone your fork locally.
-3. `cd` into the local repo you just cloned.
 
 Open up `index.html`, open the dev tools and take a look at the variable `dodger`:
 
