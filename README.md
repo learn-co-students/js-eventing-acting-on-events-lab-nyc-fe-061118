@@ -43,10 +43,10 @@ another way of setting the color to be "black", so it blends in with the backgro
 Now let's change it to something more visible:
 
 ``` javascript
-dodger.style.backgroundColor = ''
+dodger.style.backgroundColor = '#ff5bab'
 ```
 
-Now it should be pink!
+Now it should be pinky magenta-ish!
 
 ![pink dodger](https://curriculum-content.s3.amazonaws.com/skills-based-js/pink_dodger.png)
 
